@@ -2,6 +2,10 @@ import requests
 import pandas as pd
 import base64
 import api_urls as apiu
+import data_artists as da
+
+def _get_artist_discography(url_artist, usr_token):
+    pass
 
 def  _artist_search(url_search, artist_name, header):
     search_params = {'q':f'{artist_name}', 'type':'artist', 'market':'UY'}
@@ -53,8 +57,15 @@ def main(url_artist, usr_token, url_search):
     artist_name = _get_artist_name(url_artist, usr_token)
     artist_info = _get_artist_info(url_artist, usr_token)
 
-    # Búsqueda de artista por mercado
+    # Búsqueda de artista por mercado, devolverá todas las coincidencias con los nombres
     artist_search_res = _artist_search(url_search,artist_name, header = apiu.mk_header(token=usr_token))
+    flyer = da._get_flyer(search = artist_search_res)
+
+    discography = _get_artist_discography(url_artist, usr_token)
+
+    # Creamos un objeto con los datos del artista elegido
+    artista = da.Artist(name = artist_name, info = artist_info, flyer = flyer, discography = discography)
+
 
     
 
