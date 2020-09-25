@@ -1,9 +1,7 @@
-@property
 def url_base():
-    url_base = 'https://api.spotify.com/v1'
-    return url_base
+    return 'https://api.spotify.com/v1'
+    
 
-@property
 def url_search():
     url_search = 'https://api.spotify.com/v1/search'
     return url_search
